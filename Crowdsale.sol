@@ -133,4 +133,11 @@ contract Crowdsale {
             }
         }
     }
+    function bonus(uint amount) internal constant returns (uint) {
+        if (amount > Tiers[currentTier].amount) {
+            amount += ((amount*Tiers[currentTier].bonus)/100);
+            currentTier++;
+        }
+        return amount;
+    }
 }
