@@ -138,7 +138,7 @@ contract LARE is StandardToken { // CHANGE THIS. Update the contract name.
         totalSupply = 58000000000;                        // Update total supply (1000 for example) (CHANGE THIS)
         name = "LARE";                                   // Set the name for display purposes (CHANGE THIS)
         decimals = 18;                                               // Amount of decimals for display purposes (CHANGE THIS)
-        symbol = "HTCN";                                             // Set the symbol for display purposes (CHANGE THIS)
+        symbol = "LARE";                                             // Set the symbol for display purposes (CHANGE THIS)
         uintsOneEthCanBuy = 1500;                                      // Set the price of your token for the ICO (CHANGE THIS)
         fundsWallet = msg.sender;       // The owner of the contract gets ETH    
         minContributionPreSale = (oneFifth/100);

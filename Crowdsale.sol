@@ -15,6 +15,37 @@ contract Crowdsale {
     mapping(address => uint256) public balanceOf;
     bool fundingGoalReached = false;
     bool crowdsaleClosed = false;
+    uint256 public uintsOneEthCanBuy;     // How many uints of your coin can be bought by 1 ETH?
+    uint256 public totalEthInWei;         // WEI is the smallest uint of ETH (the equivalent of cent in USD or satoshi in BTC). We'll store the total ETH raised via our ICO here.  
+    address public fundsWallet;           // Where should the raised ETH go?
+    uint256 public minContributionPreSale;
+     uint256 public minContributionMainSale;
+     uint256 public maxContributionEther;
+     uint256 public Softcap;
+     uint256 public Hardcap;
+     uint ICOStart=1520121600 ; // 04.03.18 in unixtime
+     uint public stage1End = 1528070400;  // 04.06.18 unixtime
+     uint public stage2End = 1536019200; // 04.09.18 unixtime
+     uint stage3End = 1546560000; // 04.01.19 unixtime
+     uint ICOEnd = 1546560000; //  04.01.19 unixtime
+     uint oneFifth=20; // 20/100=1/5- need it for getting 0.2
+     struct Tier {
+
+        uint amount;
+        uint bonus; // in percent
+     }
+     Tier public Tier1 = Tier(2500000000,70);
+     Tier public Tier2 = Tier(2500000000,60);
+     Tier public Tier3 = Tier(2500000000,50);
+     Tier public Tier4 = Tier(2500000000,40);
+     Tier public Tier5 = Tier(3000000000,30);
+     Tier public Tier6 = Tier(3000000000,10);
+     Tier public Tier7 = Tier(3000000000,8);
+     Tier public Tier8 = Tier(3000000000,6);
+     Tier public Tier9 = Tier(3000000000,4);
+     Tier public Tier10 = Tier(3000000000,2);
+     Tier[] Tiers;
+     uint public currentTier=0;  //holds the bonus of the curren tier. the Bonus function moving to next tier.
 
     event GoalReached(address recipient, uint totalAmountRaised);
     event FundTransfer(address backer, uint amount, bool isContribution);
@@ -31,6 +62,8 @@ contract Crowdsale {
         uint etherCostOfEachToken,
         address addressOfTokenUsedAsReward
     ) {
+        uintsOneEthCanBuy = 1500;  
+
         beneficiary = ifSuccessfulSendTo;
         fundingGoal = fundingGoalInEthers * 1 ether;
         deadline = now + durationInMinutes * 1 minutes;
