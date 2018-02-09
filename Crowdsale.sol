@@ -18,17 +18,17 @@ contract Crowdsale {
     uint256 public uintsOneEthCanBuy;     // How many uints of your coin can be bought by 1 ETH?
     uint256 public totalEthInWei;         // WEI is the smallest uint of ETH (the equivalent of cent in USD or satoshi in BTC). We'll store the total ETH raised via our ICO here.  
     address public fundsWallet;           // Where should the raised ETH go?
-    uint256 public minContributionPreSale;
-     uint256 public minContributionMainSale;
-     uint256 public maxContributionEther;
-     uint256 public Softcap;
-     uint256 public Hardcap;
-     uint ICOStart=1520121600 ; // 04.03.18 in unixtime
-     uint public stage1End = 1528070400;  // 04.06.18 unixtime
-     uint public stage2End = 1536019200; // 04.09.18 unixtime
-     uint stage3End = 1546560000; // 04.01.19 unixtime
-     uint ICOEnd = 1546560000; //  04.01.19 unixtime
-     uint oneFifth=20; // 20/100=1/5- need it for getting 0.2
+    uint256 public maxContributionEther = 1000000;
+    uint256 public Softcap = 50 ether;
+    uint256 public Hardcap = 16000000 ether;
+    uint ICOStart=1520121600 ; // 04.03.18 in unixtime
+    uint public stage1End = 1528070400;  // 04.06.18 unixtime
+    uint public stage2End = 1536019200; // 04.09.18 unixtime
+    uint stage3End = 1546560000; // 04.01.19 unixtime
+    uint ICOEnd = 1546560000; //  04.01.19 unixtime
+    uint oneFifth=20; // 20/100=1/5- need it for getting 0.2
+    uint256 public minContributionPreSale = (oneFifth/100);
+    uint256 public minContributionMainSale = (oneFifth/100);
      struct Tier {
 
         uint amount;
@@ -63,12 +63,15 @@ contract Crowdsale {
         address addressOfTokenUsedAsReward
     ) {
         uintsOneEthCanBuy = 1500;  
-
+        fundsWallet = msg.sender; 
         beneficiary = ifSuccessfulSendTo;
         fundingGoal = fundingGoalInEthers * 1 ether;
         deadline = now + durationInMinutes * 1 minutes;
-        price = etherCostOfEachToken * 1 ether;
+        price = uintsOneEthCanBuy * 1 ether;
         tokenReward = token(addressOfTokenUsedAsReward);
+        
+        
+       
     }
 
     /**

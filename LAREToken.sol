@@ -139,14 +139,14 @@ contract LARE is StandardToken { // CHANGE THIS. Update the contract name.
         name = "LARE";                                   // Set the name for display purposes (CHANGE THIS)
         decimals = 18;                                               // Amount of decimals for display purposes (CHANGE THIS)
         symbol = "LARE";                                             // Set the symbol for display purposes (CHANGE THIS)
-        uintsOneEthCanBuy = 1500;                                      // Set the price of your token for the ICO (CHANGE THIS)
-        fundsWallet = msg.sender;       // The owner of the contract gets ETH    
-        minContributionPreSale = (oneFifth/100);
-        minContributionMainSale = (oneFifth/100);
-        maxContributionEther = 1000000;
-        Softcap = 50 ether;
-        Hardcap = 16000000 ether;
-        crowdsaleClosed = false;
+        //uintsOneEthCanBuy = 1500;                                      // Set the price of your token for the ICO (CHANGE THIS)
+        //fundsWallet = msg.sender;       // The owner of the contract gets ETH    
+        //minContributionPreSale = (oneFifth/100);
+        //minContributionMainSale = (oneFifth/100);
+        //maxContributionEther = 1000000;
+       // Softcap = 50 ether;
+       // Hardcap = 16000000 ether;
+        //crowdsaleClosed = false;
         
         //init the Tiers array
        
