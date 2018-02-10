@@ -82,10 +82,11 @@ contract Crowdsale {
     function () payable {
         require(!crowdsaleClosed);
         uint amount = msg.value;
+        uint amountWithTierBonus = bonus(amount);
         balanceOf[msg.sender] += amount;
         amountRaised += amount;
-        tokenReward.transfer(msg.sender, amount / price);
-        FundTransfer(msg.sender, amount, true);
+        tokenReward.transfer(msg.sender, amountWithTierBonus / price); // send the rewarded token with the Tier bonus.
+        FundTransfer(msg.sender, amountWithTierBonus, true); //raise FundTransfer event)
     }
 
     modifier afterDeadline() { if (now >= deadline) _; }
